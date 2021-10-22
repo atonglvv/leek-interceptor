@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class HelloController {
 
-    @RequestMapping("hello")
+    @RequestMapping(value = "hello", produces = { "application/json" })
     public String hello(@RequestBody User user) {
         return "Hello Controller.User = " + user.toString();
     }

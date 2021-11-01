@@ -20,7 +20,7 @@ import java.util.Map;
  * @author: atong
  * @create: 2021-10-19 22:55
  */
-@Component
+//@Component
 @Slf4j
 public class GetMidFilter extends OncePerRequestFilter {
 

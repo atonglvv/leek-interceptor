@@ -2,6 +2,7 @@ package cn.atong.leek.leekinterceptor.aop;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -14,8 +15,9 @@ import org.springframework.stereotype.Component;
  * @author: atong
  * @create: 2021-10-19 23:02
  */
-@Component
-@Aspect
+@Slf4j
+//@Aspect
+//@Component
 public class GetMidAspect {
 
     @Pointcut("execution(public * cn.atong.leek.leekinterceptor.controller.*.*(..))")
@@ -24,6 +26,7 @@ public class GetMidAspect {
 
     @Around("getMidPointCut()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+        log.info("==GetMidAspect==");
         // 获取请求参数数组
         Object[] args = joinPoint.getArgs();
         Object obj = args[0];

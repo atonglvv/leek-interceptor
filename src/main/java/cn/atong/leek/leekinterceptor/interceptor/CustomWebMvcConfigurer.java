@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author: atong
  * @create: 2021-10-19 21:39
  */
-@Configuration
+//@Configuration
 public class CustomWebMvcConfigurer implements WebMvcConfigurer {
 
     @Override

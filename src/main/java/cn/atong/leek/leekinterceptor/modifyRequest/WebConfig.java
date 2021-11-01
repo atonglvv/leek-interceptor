@@ -3,6 +3,7 @@ package cn.atong.leek.leekinterceptor.modifyRequest;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -16,23 +17,19 @@ import javax.servlet.Filter;
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-    @Bean
-    public WebInterceptor webInterceptor() {
-        return new WebInterceptor();
-    }
 
     @Bean
     public FilterRegistrationBean addRequestWrapperFilter() {
         FilterRegistrationBean<Filter> registration = new FilterRegistrationBean<>();
         registration.setFilter(new RequestWrapperFilter());
         registration.setName("RequestWrapperFilter");
-        registration.addUrlPatterns("/**");
-        registration.setOrder(1);
+        registration.addUrlPatterns("/*");
+        registration.setOrder(Ordered.LOWEST_PRECEDENCE);
         return registration;
     }
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(webInterceptor()).addPathPatterns("/**");
+        WebInterceptor customInterceptor= new WebInterceptor();
+        registry.addInterceptor(customInterceptor);
     }
 }

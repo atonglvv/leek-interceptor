@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.Objects;
 
 /**
  * @program: leek-interceptor
@@ -16,14 +18,22 @@ public class RequestWrapperFilter implements Filter {
 
     @Override
     public void init(FilterConfig config) {
-        log.info("==RequestWrapperFilter启动==");
+        log.info("======RequestWrapperFilter启动======");
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws java.io.IOException, ServletException {
-        ItemCHttpServletRequestWrapper requestWrapper = new ItemCHttpServletRequestWrapper((HttpServletRequest) request);
+            throws IOException, ServletException {
+        log.info("======RequestWrapperFilter.doFilter======");
+        ItemCHttpServletRequestWrapper requestWrapper = null;
+        try {
+            HttpServletRequest req = (HttpServletRequest)request;
+            requestWrapper = new ItemCHttpServletRequestWrapper(req);
+        } catch (Exception e) {
+            log.warn("ItemCHttpServletRequestWrapper Error:", e);
+        }
         chain.doFilter(requestWrapper, response);
+        chain.doFilter((Objects.isNull(requestWrapper) ? request : requestWrapper), response);
     }
 
     @Override

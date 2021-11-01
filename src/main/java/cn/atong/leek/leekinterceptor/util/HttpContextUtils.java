@@ -22,6 +22,7 @@ public class HttpContextUtils {
 
     /**
      * 获取query参数
+     *
      * @param request
      * @return
      */
@@ -35,6 +36,7 @@ public class HttpContextUtils {
         }
         return params;
     }
+
     /**
      * 获取请求Body
      *

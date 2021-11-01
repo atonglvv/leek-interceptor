@@ -7,7 +7,6 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 
 /**
  * @program: leek-interceptor
@@ -29,6 +28,7 @@ public class ItemCHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
     /**
      * 重新包装输入流
+     *
      * @return ServletInputStream
      * @throws IOException IOException
      */
@@ -42,6 +42,7 @@ public class ItemCHttpServletRequestWrapper extends HttpServletRequestWrapper {
             public int read() throws IOException {
                 return bodyStream.read();
             }
+
             /**
              * 下面的方法一般情况下不会被使用，如果你引入了一些需要使用ServletInputStream的外部组件，可以重点关注一下。
              * @return boolean
@@ -50,10 +51,12 @@ public class ItemCHttpServletRequestWrapper extends HttpServletRequestWrapper {
             public boolean isFinished() {
                 return false;
             }
+
             @Override
             public boolean isReady() {
                 return true;
             }
+
             @Override
             public void setReadListener(ReadListener readListener) {
             }

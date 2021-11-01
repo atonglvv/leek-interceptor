@@ -4,12 +4,9 @@ import cn.atong.leek.leekinterceptor.pojo.User;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StreamUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -44,7 +41,7 @@ public class WebInterceptor implements HandlerInterceptor {
         if (null == json) {
             log.info("WebInterceptor, request不含json");
             return false;
-        }else {
+        } else {
             String target = requestObject.getJSONObject("json").getJSONObject("header").getString("target");
             log.info("WebInterceptor, request.json.header.target = " + target);
             String accessToken = requestObject.getJSONObject("json").getJSONObject("header").getString("accessToken");

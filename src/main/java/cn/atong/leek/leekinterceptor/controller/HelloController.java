@@ -1,7 +1,9 @@
 package cn.atong.leek.leekinterceptor.controller;
 
 import cn.atong.leek.leekinterceptor.pojo.User;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @program: leek-interceptor
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class HelloController {
 
-    @RequestMapping(value = "hello", produces = { "application/json" })
+    @RequestMapping(value = "hello", produces = {"application/json"})
     public String hello(@RequestBody User user) {
         return "Hello Controller.User = " + user.toString();
     }

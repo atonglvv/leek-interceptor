@@ -1,17 +1,12 @@
 package cn.atong.leek.leekinterceptor.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.MethodParameter;
-import org.springframework.util.ClassUtils;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.yaml.snakeyaml.util.ArrayUtils;
 
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.*;
-import java.net.URLDecoder;
-import java.util.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @program: leek-interceptor
@@ -80,7 +75,6 @@ public class GetMidInterceptor implements HandlerInterceptor {
         byte[] bodyBytes = StreamUtils.copyToByteArray(request.getInputStream());
         String body = new String(bodyBytes, request.getCharacterEncoding());
         System.out.println("body = " + body);
-
 
 
         return true;

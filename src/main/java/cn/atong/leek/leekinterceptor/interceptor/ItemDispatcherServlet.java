@@ -15,9 +15,10 @@ public class ItemDispatcherServlet extends DispatcherServlet {
 
     /**
      * 包装成我们自定义的request
-     * @param request HttpServletRequest
+     *
+     * @param request  HttpServletRequest
      * @param response HttpServletResponse
-     * @throws Exception  Exception
+     * @throws Exception Exception
      */
     @Override
     protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {

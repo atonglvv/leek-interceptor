@@ -19,10 +19,11 @@ import org.springframework.stereotype.Component;
 public class GetMidAspect {
 
     @Pointcut("execution(public * cn.atong.leek.leekinterceptor.controller.*.*(..))")
-    public void getMidPointCut(){}
+    public void getMidPointCut() {
+    }
 
     @Around("getMidPointCut()")
-    public Object around(ProceedingJoinPoint joinPoint) throws Throwable{
+    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         // 获取请求参数数组
         Object[] args = joinPoint.getArgs();
         Object obj = args[0];
